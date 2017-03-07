@@ -5,8 +5,13 @@ const meow = require('meow')
 const keypress = require('keypress')
 const clear = require('./clear')
 const log = require('./log')
+const scripts2list = require('./scripts2list')
+const renderState = require('./render-state')
+const runScript = require('./run-script')
+const findPackageJSON = require('find-package-json')
+const finder = findPackageJSON(process.cwd()).next()
 
-const initShell = () => {
+const initCLITools = () => {
     clear()
 
     meow(`
@@ -35,7 +40,7 @@ const bye = () => {
 }
 
 const init = () => {
-const pkg = finder.value
+    const pkg = finder.value
     const state = {
         scripts: scripts2list(pkg.scripts || []),
         selectedInd: 0
@@ -47,7 +52,7 @@ const pkg = finder.value
 
     const { min, max } = Math
 
-    process.stdin.on('keypress', (ch, key) => {
+    const handleKeyPress = (ch, key) => {
         const isEscape = (key && key.ctrl && key.name == 'c') || key.name == 'escape'
         if (isEscape) {
             process.stdin.pause()
@@ -65,21 +70,19 @@ const pkg = finder.value
         }
         if (key.name == 'return') {
             process.stdin.pause()
+            process.stdin.removeListener('keypress', handleKeyPress)
+            process.stdin.setRawMode(false)
+            process.stdin.resume()
             runScript(state.scripts[state.selectedInd])
         }
-    })
+    }
 
+    process.stdin.addListener('keypress', handleKeyPress)
     process.stdin.setRawMode(true)
     process.stdin.resume()
 }
 
-const scripts2list = require('./scripts2list')
-const renderState = require('./render-state')
-const runScript = require('./run-script')
-const findPackageJSON = require('find-package-json')
-const finder = findPackageJSON(process.cwd()).next()
-
-initShell()
+initCLITools()
 
 const packageNotFound = finder.done && finder.value == null
 if (packageNotFound) {
