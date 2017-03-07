@@ -3,7 +3,7 @@
 const chalk = require('chalk')
 const meow = require('meow')
 const keypress = require('keypress')
-const clear = require('./src/clear')
+const clear = require('./clear')
 
 clear()
 
@@ -21,10 +21,10 @@ meow(`
 `)
 
 
-const scripts2list = require('./src/scripts2list')
-const pkg = require('./package.json')
-const renderState = require('./src/render-state')
-const runScript = require('./src/run-script')
+const scripts2list = require('./scripts2list')
+const pkg = require('../package.json')
+const renderState = require('./render-state')
+const runScript = require('./run-script')
 
 const state = {
     scripts: scripts2list(pkg.scripts || []),
@@ -63,5 +63,3 @@ process.stdin.on('keypress', (ch, key) => {
 
 process.stdin.setRawMode(true)
 process.stdin.resume()
-
-
