@@ -6,18 +6,17 @@ const keypress = require('keypress')
 const clear = require('./clear')
 const log = require('./log')
 
-
 const initShell = () => {
     clear()
 
     meow(`
         ${chalk.bold('Usage:')}
-            $ pashm
+            $ lana
 
         ${chalk.bold('Examples:')}
-            $ pashm
+            $ lana
 
-        Well, that's it. Just type ${chalk.bold.blue('pashm')},
+        Well, that's it. Just type ${chalk.bold.blue('lana')},
         hit enter and scroll through a list of available scripts.
         \n
 

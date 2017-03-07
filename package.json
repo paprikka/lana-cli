@@ -1,10 +1,10 @@
 {
-  "name": "pashm",
+  "name": "lana-cli",
   "version": "1.0.0",
   "description": "🌈  NPM scripts with better UX 🌈",
   "main": "index.js",
   "bin": {
-    "pashm": "cli.js"
+    "lana": "cli.js"
   },
   "scripts": {
     "foo": "bar",
