@@ -13,11 +13,11 @@ const initShell = () => {
         ${chalk.bold('Usage:')}
             $ lana
 
-        ${chalk.bold('Examples:')}
-            $ lana
-
         Well, that's it. Just type ${chalk.bold.blue('lana')},
-        hit enter and scroll through a list of available scripts.
+        hit ${chalk.bold.blue('[enter]')} and scroll through a list of available scripts.
+
+        Hit ${chalk.bold.blue('[escape]')} or ${chalk.bold.blue('[ctrl + c]')} to exit.
+
         \n
 
     `)
