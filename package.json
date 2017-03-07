@@ -1,0 +1,17 @@
+{
+  "name": "pashm",
+  "version": "1.0.0",
+  "description": "🌈  NPM scripts with better UX 🌈",
+  "main": "index.js",
+  "scripts": {
+    "foo": "bar",
+    "baz": "bar2",
+    "bazz": "bar3"
+  },
+  "author": "Rafal Pastuszak <rafal.pastuszak@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "meow": "^3.7.0"
+  }
+}
