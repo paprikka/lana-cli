@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "🌈  NPM scripts with better UX 🌈",
   "main": "index.js",
+  "bin": {
+    "pashm": "cli.js"
+  },
   "scripts": {
     "foo": "bar",
     "baz": "bar2",
