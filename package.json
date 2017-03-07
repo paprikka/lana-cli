@@ -2,24 +2,31 @@
   "name": "lana-cli",
   "version": "1.0.0",
   "description": "Lana! NPM scripts with better UX 🌈",
-  "main": "index.js",
+  "main": "cli.js",
   "bin": {
     "lana": "cli.js"
   },
   "scripts": {
-    "foo": "bar",
-    "baz": "bar2",
-    "bazz": "bar3"
+    "help": "lana --help",
+    "start": "node cli",
+    "test": "jest --watch"
   },
-  "author": "Rafal Pastuszak <rafal.pastuszak@gmail.com>",
+  "author": {
+    "name": "Rafal Pastuszak",
+    "email": "rafal.pastuszak@gmail.com",
+    "url": "sonnet.io"
+  },
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.3",
     "find-package-json": "^1.0.0",
     "keypress": "^0.2.1",
+    "markdown-it": "^8.3.1",
     "meow": "^3.7.0"
   },
   "devDependencies": {
-    "eslint": "^3.17.1"
-  }
+    "eslint": "^3.17.1",
+    "jest": "^19.0.2"
+  },
+  "repository": "paprikka/lana-cli.git"
 }
