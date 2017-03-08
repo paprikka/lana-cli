@@ -46,6 +46,11 @@ Random paragraph of text goes here...
 
 #### Snake! <!--lana: snake-case-->
 #### Snake Two! <!--lana:snake-two-->
+
+
+#### This one is described with a paragraph
+
+lorem ipsum dolor sit amet consectatur trolo lolo lo <!--lana: paragraph-here-->
         `
 
         expect(md2json(inputString)).toEqual(
@@ -53,6 +58,7 @@ Random paragraph of text goes here...
                 start: 'Start the app',
                 'snake-case': 'Snake!',
                 'snake-two': 'Snake Two!',
+                'paragraph-here': 'lorem ipsum dolor sit amet consectatur trolo lolo lo',
             }
         )
     })
