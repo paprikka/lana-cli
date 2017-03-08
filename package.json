@@ -9,7 +9,8 @@
   "scripts": {
     "help": "lana --help",
     "start": "node cli",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "lint": "eslint **/*.js"
   },
   "author": {
     "name": "Rafal Pastuszak",
