@@ -51,6 +51,11 @@ Random paragraph of text goes here...
 #### This one is described with a paragraph
 
 lorem ipsum dolor sit amet consectatur trolo lolo lo <!--lana: paragraph-here-->
+
+
+### This is a multiline paragraph
+lorem ipsum dolor
+sit amet <!--lana: multiline-->
         `
 
         expect(md2json(inputString)).toEqual(
@@ -59,6 +64,7 @@ lorem ipsum dolor sit amet consectatur trolo lolo lo <!--lana: paragraph-here-->
                 'snake-case': 'Snake!',
                 'snake-two': 'Snake Two!',
                 'paragraph-here': 'lorem ipsum dolor sit amet consectatur trolo lolo lo',
+                'multiline': 'sit amet'
             }
         )
     })
