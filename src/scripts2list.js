@@ -1,8 +1,16 @@
 const { keys } = Object
-const scripts2list = scripts => (
+
+const getItem = (name, command, descriptions) => {
+    return {
+        name,
+        label: descriptions[name] ? descriptions[name] : command
+    }
+}
+
+const scripts2list = (scripts, descriptions = {}) => (
     keys(scripts)
         .map(
-        name => ({ name, script: scripts[name] })
+            name => getItem(name, scripts[name], descriptions)
         )
 )
 
