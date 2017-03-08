@@ -6,6 +6,9 @@
   "bin": {
     "lana": "cli.js"
   },
+  "keywords": [
+    "lana", "cli-app", "cli", "package", "npm", "json", "markdown", "docs", "documentation", "yarn", "utils"
+  ],
   "scripts": {
     "help": "lana --help",
     "start": "node cli",
