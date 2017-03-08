@@ -849,10 +849,6 @@ fill-range@^2.1.0:
     repeat-element "^1.1.2"
     repeat-string "^1.5.2"
 
-find-package-json@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/find-package-json/-/find-package-json-1.0.0.tgz#ed6efb0bcc905e839173e53d47920711e38b9561"
-
 find-parent-dir@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/find-parent-dir/-/find-parent-dir-0.3.0.tgz#33c44b429ab2b2f0646299c5f9f718f376ff8d54"
