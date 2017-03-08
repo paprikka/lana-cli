@@ -1,4 +1,4 @@
-# Lana! NPM scripts with better UX 🌈
+# Lana! NPM scripts with better UX 🏓
 ![logo](site/logo.png)
 
 ## What?
