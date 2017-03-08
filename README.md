@@ -21,6 +21,7 @@ Normally, I'd agree with that, but it suits my workflow and might help you as we
 
 ## Setup
 
+> Supported Node.js version: `6.x.x` and higher
 ### Yarn
     $ yarn global add lana
 
@@ -35,18 +36,15 @@ In a Javascript project with `package.json`, type:
 
 You can share documentation between lana! and README.md by tagging content, like in this imaginary CMS (Cat Management System).
 
-### Usage
+### Usage (documentation)
 
-#### Start web server <!--lana: start-->
-    $ npm start
+Add `<!--lana: NPM_TASK_NAME-->` at the end of a header or paragraph describing the task, and Lana will pick it up.
 
-#### Download kittens <!--lana: download kittens-->
-    $ npm run download-kittens
+    #### Start a debug server <!--lana: start-->
+        $ npm start
 
-#### Upload kittens <!--lana: upload-kittens-->
-    $ npm run upload-kittens
+    #### Upload kittens <!--lana: upload-kittens-->
+        $ npm run upload-kittens
 
-#### Download database for integration tests <!--lana: integration-db-download-->
-    $ ./build/prepare_db.sh && npm run integration-db-download
-
-
+    #### Download database for integration tests <!--lana: integration-db-download-->
+        $ ./build/prepare_db.sh && npm run integration-db-download
