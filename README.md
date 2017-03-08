@@ -1,14 +1,23 @@
 # Lana! NPM scripts with better UX 🌈
+![logo](site/logo.png)
 
 ## What?
 
 Lana! provides a convenient, global API to browse and run NPM scripts in your projects.
 Also, it makes managing your documentation easier by pulling out descriptions from your projects' README.md file.
 
+![terminal](site/lana.gif)
+
 ## Why?
 
 Do you happen to switch between your projects often and rely on reading package.json to look up the dev tasks? 
 Well, I do. So give it a try. Your OCD will thank you.
+
+## Why not?
+
+There are many ways of tackling this issue, usually script names should be descriptive enough or one might say `package.json` is not the right place for that at all.
+
+Normally, I'd agree with that, but it suits my workflow and might help you as well.
 
 ## Setup
 
