@@ -22,6 +22,7 @@ Normally, I'd agree with that, but it suits my workflow and might help you as we
 ## Setup
 
 > Supported Node.js version: `6.x.x` and higher
+
 ### Yarn
     $ yarn global add lana
 
