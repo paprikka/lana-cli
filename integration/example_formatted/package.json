@@ -1,0 +1,17 @@
+{
+  "name": "example_formatted",
+  "version": "1.0.0",
+  "description": "Example (formatted)",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo start",
+    "download-kittens": "node index",
+    "upload-kittens": "echo upload-kittens",
+    "upload-kittens-with-shrimp": "node index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^1.1.3"
+  }
+}

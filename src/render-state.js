@@ -2,9 +2,9 @@ const log = require('./log')
 const clear = require('./clear')
 const chalk = require('chalk')
 
-const renderItem = ({ script, name }, isSelected) => {
-    if (isSelected) return chalk.bgBlue.white.bold(` ${name}: ${script} `)
-    return chalk.white(` ${name}: `) + chalk.gray(script) + ' '
+const renderItem = ({ label, name }, isSelected) => {
+    if (isSelected) return chalk.bgBlue.white.bold(` ${name}: ${label} `)
+    return chalk.white(` ${name}: `) + chalk.gray(label) + ' '
 }
 
 const renderState = newState => {

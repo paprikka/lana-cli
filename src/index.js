@@ -8,8 +8,6 @@ const log = require('./log')
 const scripts2list = require('./scripts2list')
 const renderState = require('./render-state')
 const runScript = require('./run-script')
-const findPackageJSON = require('find-package-json')
-const finder = findPackageJSON(process.cwd()).next()
 
 const initCLITools = () => {
     clear()
@@ -28,26 +26,47 @@ const initCLITools = () => {
     `)
 }
 
-const bye = () => {
-    log(chalk.red(
-`
-    ${chalk.bold('Error:')}
-    Could not find ${chalk.bold('package.json')} in current
-    or parent dir.
-`        
-    ))
-    process.exit(1)
+const bye = require('./bye')
+
+const getProjectRoot = cwd => {
+    const findParentDir = require('find-parent-dir')
+
+    return new Promise((resolve, reject) => {
+        findParentDir(cwd, 'package.json', (err, dir) => {
+            if (err) return reject(err)
+            resolve(dir)
+        })
+
+    })
 }
 
-const init = () => {
-    const pkg = finder.value
-    const state = {
-        scripts: scripts2list(pkg.scripts || []),
-        selectedInd: 0
+const getPackage = root => new Promise((resolve) => {
+    const path = require('path')
+    try {
+        const pkg = require(path.join(root, 'package.json'))
+        resolve(pkg)
+    } catch (err) {
+        throw new Error('PACKAGE_NOT_FOUND')
     }
+})
 
-    renderState(state)
 
+const getInitialState = (root, pkg) => {
+    const getDocs = require('./get-docs')
+
+    const md2json = require('./md2json')
+    return getDocs(root)
+        .then(md2json)
+        .then( docs => {
+            const state = {
+                scripts: scripts2list(pkg.scripts || [], docs),
+                selectedInd: 0
+            }
+            return state
+        })
+}
+
+const initInput = state => {
     keypress(process.stdin)
 
     const { min, max } = Math
@@ -82,12 +101,20 @@ const init = () => {
     process.stdin.resume()
 }
 
-initCLITools()
-
-const packageNotFound = finder.done && finder.value == null
-if (packageNotFound) {
-    bye()
-} else {
-    init()
+const init = ({ root, pkg }) => {
+    getInitialState(root, pkg)
+        .then(state => {
+            renderState(state)
+            initInput(state)
+        })
 }
+
+initCLITools()
+getProjectRoot(process.cwd())
+    .then((root) => (
+        getPackage(root).then((pkg) => ({ root, pkg }))
+    ))
+    .then(init)
+    .catch(bye)
+
 

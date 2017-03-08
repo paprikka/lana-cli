@@ -28,20 +28,16 @@ You can share documentation between lana! and README.md by tagging content, like
 
 ### Usage
 
-<!--lana: start-->
-#### Start web server
+#### Start web server <!--lana: start-->
     $ npm start
 
-<!--lana: download kittens-->
-#### Download kittens
+#### Download kittens <!--lana: download kittens-->
     $ npm run download-kittens
 
-<!--lana: upload-kittens-->
-#### Upload kittens
+#### Upload kittens <!--lana: upload-kittens-->
     $ npm run upload-kittens
 
-<!--lana: integration-db-download-->
-#### Download database for integration tests
-    $ npm run integration-db-download
+#### Download database for integration tests <!--lana: integration-db-download-->
+    $ ./build/prepare_db.sh && npm run integration-db-download
 
 
