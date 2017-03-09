@@ -50,23 +50,31 @@ const getPackage = root => new Promise((resolve) => {
 })
 
 
+const checkForUpdates = require('./check-for-updates')
 const getInitialState = (root, pkg) => {
     const getDocs = require('./get-docs')
 
     const md2json = require('./md2json')
 
-    return getDocs(root)
-        .then(md2json)
-        .catch( err => {
-            if(err.message == 'NO_DOCS_AVAILABLE') return {}
-            throw err
-        })
-        .then( docs => {
-            const state = {
-                scripts: scripts2list(pkg.scripts || [], docs),
-                selectedInd: 0
-            }
-            return state
+
+
+    return checkForUpdates(pkg)
+        .then(update => {
+            return getDocs(root)
+                .then(md2json)
+                .catch(err => {
+                    if (err.message == 'NO_DOCS_AVAILABLE') return {}
+                    throw err
+                })
+                .then(docs => {
+                    const state = {
+                        scripts: scripts2list(pkg.scripts || [], docs),
+                        selectedInd: 0,
+                        hasUpdate: !!update,
+                        update
+                    }
+                    return state
+                })
         })
 }
 

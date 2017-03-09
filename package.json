@@ -36,7 +36,8 @@
     "find-parent-dir": "^0.3.0",
     "keypress": "^0.2.1",
     "markdown-it": "^8.3.1",
-    "meow": "^3.7.0"
+    "meow": "^3.7.0",
+    "update-notifier": "^2.1.0"
   },
   "devDependencies": {
     "eslint": "^3.17.1",
