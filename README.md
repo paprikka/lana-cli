@@ -24,10 +24,10 @@ Normally, I'd agree with that, but it suits my workflow and might help you as we
 > Supported Node.js version: `6.x.x` and higher
 
 ### Yarn
-    $ yarn global add lana
+    $ yarn global add lana-cli
 
 ### NPM
-    $ npm i -g lana
+    $ npm i -g lana-cli
 
 ## Usage
 
