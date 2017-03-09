@@ -9,6 +9,9 @@
     "upload-kittens": "echo upload-kittens",
     "upload-kittens-with-shrimp": "node index"
   },
+  "engines": {
+    "node": ">=6"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
