@@ -9,6 +9,20 @@ const renderItem = ({ label, name }, isSelected) => {
     return chalk.white(`  ${name}: `) + chalk.gray(label)
 }
 
+const bold = str => chalk.bold(str)
+const getUpdateMessage = (update) => {
+    if(!update) return ''
+    return chalk.red(
+`
+
+    Hey Cowboy, an update ${bold(`[${update}]`)} is available.
+
+    Run: ${bold('npm -g i lana-cli')} or ${bold('yarn global add lana-cli')}
+    to get the latest version.
+`
+    )
+}
+
 const renderState = newState => {
     clear()
     const scriptList = newState.scripts
@@ -22,7 +36,7 @@ const renderState = newState => {
     ${chalk.bold.blue('Available scripts:')}
 
   ${scriptList}
-
+  ${getUpdateMessage(newState.update)}
     `)
 }
 
