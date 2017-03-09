@@ -54,8 +54,13 @@ const getInitialState = (root, pkg) => {
     const getDocs = require('./get-docs')
 
     const md2json = require('./md2json')
+
     return getDocs(root)
         .then(md2json)
+        .catch( err => {
+            if(err.message == 'NO_DOCS_AVAILABLE') return {}
+            throw err
+        })
         .then( docs => {
             const state = {
                 scripts: scripts2list(pkg.scripts || [], docs),
