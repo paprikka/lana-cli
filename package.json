@@ -1,6 +1,6 @@
 {
   "name": "lana-cli",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "Lana! NPM scripts with better UX 🏓",
   "main": "cli.js",
   "bin": {
