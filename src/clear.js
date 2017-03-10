@@ -1,2 +1,6 @@
-const clear = () => process.stdout.write('\x1Bc')
+const proc = require('./utils/process')
+function clear () {
+    proc.stdout.write('\x1Bc')
+}
+
 module.exports = clear

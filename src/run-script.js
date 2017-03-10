@@ -1,18 +1,22 @@
-const clear = require('./clear')
-const log = require('./log')
-const chalk = require('chalk')
 
 const runScript = ({name}) => {
+    const clear = require('./clear')
+    const log = require('./log')
+    const chalk = require('chalk')
+    const proc = require('./utils/process')
+    const getScriptCommand = require('./get-script-command')
+    const npmCMD = getScriptCommand()
+    
     clear()
     log(chalk.bgGreen.white(` Starting script [${name}]... `))
     const opts = { stdio: ['pipe', 1, 2, 'ipc'] }
 
-    const childProcess = require('child_process').spawn('npm', ['run', name], opts)
-    process.stdin.pipe(childProcess.stdin)
-    childProcess.addListener('exit', (code) => process.exit(code))
+    const childProcess = require('child_process').spawn(npmCMD, ['run', name], opts)
+    proc.stdin.pipe(childProcess.stdin)
+    childProcess.addListener('exit', (code) => proc.exit(code))
     childProcess.addListener('error', (err) => {
         log(err)
-        process.exit(err.code || 1)
+        proc.exit(err.code || 1)
     })
 }
 
