@@ -9,7 +9,7 @@ const runScript = ({name}) => {
     
     clear()
     log(chalk.bgGreen.white(` Starting script [${name}]... `))
-    const opts = { stdio: ['pipe', 1, 2, 'ipc'] }
+    const opts = { stdio: ['pipe', 1, 2] }
 
     const childProcess = require('child_process').spawn(npmCMD, ['run', name], opts)
     proc.stdin.pipe(childProcess.stdin)
