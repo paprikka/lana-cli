@@ -10,6 +10,7 @@ module.exports = {
         "ecmaVersion": "2017"
     },
     "globals": {
+        "jest": true,
         "expect": true,
         "it": true
     },
