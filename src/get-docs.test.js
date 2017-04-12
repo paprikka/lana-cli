@@ -1,4 +1,4 @@
-
+const path = require('path')
 
 describe('get-docs', () => {
     let getDocs
@@ -20,7 +20,8 @@ describe('get-docs', () => {
         const root = '/foo/bar/baz'
         require('./get-docs')(root)
         expect(readFile).toBeCalled()
-        expect(readFile.mock.calls[0][0]).toEqual(root + '/README.md')
+        const readme = path.join(root, 'README.md')
+        expect(readFile.mock.calls[0][0]).toEqual(readme)
     })
 
     it('should reject with NO_DOCS_AVAILABLE error if README not found', () => {
