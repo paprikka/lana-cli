@@ -3,7 +3,6 @@ const clear = require('./clear')
 const chalk = require('chalk')
 
 
-const bullet = chalk.blue('•')
 const renderItem = ({ label, name }, isSelected) => {
     if (isSelected) return chalk.blue.bold(`• ${name}: ${label} `)
     return chalk.white(`  ${name}: `) + chalk.gray(label)
