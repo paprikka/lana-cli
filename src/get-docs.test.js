@@ -1,4 +1,5 @@
-const path = require('path')
+const fs = require('fs')
+const dir = require('node-dir')
 
 describe('get-docs', () => {
     let getDocs
@@ -13,51 +14,46 @@ describe('get-docs', () => {
         expect(getDocs('') instanceof Promise).toBe(true)
     })
 
-    it('should load README from the passed root directory', () => {
-        jest.mock('fs')
-        const { readFile } = require('fs')
-
-        const root = '/foo/bar/baz'
-        require('./get-docs')(root)
-        expect(readFile).toBeCalled()
-        const readme = path.join(root, 'README.md')
-        expect(readFile.mock.calls[0][0]).toEqual(readme)
-    })
 
     it('should reject with NO_DOCS_AVAILABLE error if README not found', () => {
-        jest.mock('fs')
-        const { readFile } = require('fs')
-
-
-        readFile.mockImplementationOnce((path, encoding, cb) => {
-            const err = new Error()
-            err.code = 'ENOENT'
-            cb(err, '')
-        })
-        const root = '/foo/bar/baz'
-        return require('./get-docs')(root)
+        return require('./get-docs')(__dirname)
             .catch( err => {
                 expect(err.message).toBe('NO_DOCS_AVAILABLE')
             })
 
     })
 
-    it('should pass the exception if a different fs error occurs', () => {
-        jest.mock('fs')
-        const { readFile } = require('fs')
+    describe('when md files are present', () => {
+        const mockedContent = 'Hello markdown'
+        const createMdFile = (name) =>
+            fs.writeFileSync(`${__dirname}/${name}.md`, mockedContent)
 
+        afterAll(() => {
+            dir.files(__dirname, (err, files) => {
+                if (err) throw err
 
-        readFile.mockImplementationOnce((path, encoding, cb) => {
-            const err = new Error()
-            err.code = 'Oh my god, it\'s a boo boo'
-            cb(err, '')
-        })
-        const root = '/foo/bar/baz'
-        return require('./get-docs')(root)
-            .catch( err => {
-                expect(err.message).not.toBe('NO_DOCS_AVAILABLE')
-                expect(err.code).toBe('Oh my god, it\'s a boo boo')
+                files.forEach((mdFile) => {
+                    /.md$/.test(mdFile) && fs.unlinkSync(mdFile)
+                })
             })
+        })
 
+        it('should load README from the passed root directory', () => {
+            createMdFile('README')
+
+            return require('./get-docs')(__dirname)
+                .then( content => {
+                    expect(content).toBe(mockedContent)
+                })
+        })
+
+        it('should load all md files from the passed root directory', () => {
+            createMdFile('some-more')
+
+            return require('./get-docs')(__dirname)
+                .then( content => {
+                    expect(content.length).toEqual(mockedContent.length * 2 + 1)
+                })
+        })
     })
 })
