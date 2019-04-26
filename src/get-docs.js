@@ -6,6 +6,7 @@ const getDocs = root => {
     return new Promise((resolve, reject) => {
         dir.readFiles(root, {
             match: /.md$/,
+            excludeDir: ['node_modules'],
             exclude: /^\./
         },
         function(err, content, next) {
