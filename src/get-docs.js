@@ -1,13 +1,24 @@
+const dir = require('node-dir')
 
 const getDocs = root => {
-    const path = require('path')
-    const fs = require('fs')
+    const mds = []
 
     return new Promise((resolve, reject) => {
-        fs.readFile(path.join(root, 'README.md'), 'utf8', (err, data) => {
-            if(err && err.code == 'ENOENT') return reject(new Error('NO_DOCS_AVAILABLE'))
+        dir.readFiles(root, {
+            match: /.md$/,
+            excludeDir: ['node_modules'],
+            exclude: /^\./
+        },
+        function(err, content, next) {
+            if (err) throw err
+            mds.push(content)
+            next()
+        },
+        function(err, files) {
+            if (files && files.length === 0) return reject(new Error('NO_DOCS_AVAILABLE'))
             if (err) return reject(err)
-            resolve(data)
+
+            resolve(mds.join('\n'))
         })
     })
 }

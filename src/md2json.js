@@ -1,4 +1,5 @@
 var md = require('markdown-it')()
+    .disable([ 'link', 'image' ])
 
 const md2json = mdString => {
     if(!mdString) throw new Error('Markdown string expected')
