@@ -32,6 +32,11 @@
     "email": "rafal.pastuszak@gmail.com",
     "url": "sonnet.io"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.3",
@@ -42,6 +47,8 @@
     "update-notifier": "^2.1.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-angular": "^11.0.0",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/git": "^9.0.0",
@@ -49,6 +56,7 @@
     "@semantic-release/npm": "^7.0.9",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "eslint": "^3.17.1",
+    "husky": "^4.3.6",
     "jest": "^19.0.2",
     "semantic-release": "^17.3.1"
   },
