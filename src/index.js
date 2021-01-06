@@ -81,8 +81,6 @@ const getInitialState = (root, pkg) => {
 const initInput = state => {
     keypress(process.stdin)
 
-    const { min, max } = Math
-
     const handleKeyPress = (ch, key) => {
         const isEscape = (key && key.ctrl && key.name == 'c') || key.name == 'escape'
         if (isEscape) {
@@ -90,12 +88,14 @@ const initInput = state => {
         }
 
         if (key.name == 'up') {
-            state.selectedInd = max(0, state.selectedInd - 1)
+            const newInd = state.selectedInd - 1
+            state.selectedInd = newInd >= 0 ? newInd : state.scripts.length - 1
             renderState(state)
             return
         }
         if (key.name == 'down') {
-            state.selectedInd = min(state.scripts.length - 1, state.selectedInd + 1)
+            const newInd = state.selectedInd + 1
+            state.selectedInd = newInd <= state.scripts.length - 1 ? newInd : 0
             renderState(state)
             return
         }
