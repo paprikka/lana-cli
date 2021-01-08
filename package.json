@@ -6,6 +6,9 @@
   "bin": {
     "lana": "cli.js"
   },
+  "files": [
+    "src/**/*.*"
+  ],
   "keywords": [
     "lana",
     "cli-app",
