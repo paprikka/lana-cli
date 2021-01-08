@@ -1,3 +1,10 @@
+## [3.1.2-beta.1](https://github.com/paprikka/lana-cli/compare/v3.1.1...v3.1.2-beta.1) (2021-01-08)
+
+
+### Bug Fixes
+
+* remove unnecessary assets from NPM package ([0efc69f](https://github.com/paprikka/lana-cli/commit/0efc69f99626c55ac73d58dabaed25ccce5884ee))
+
 ## [3.1.1](https://github.com/paprikka/lana-cli/compare/v3.1.0...v3.1.1) (2021-01-08)
 
 
