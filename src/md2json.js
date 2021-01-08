@@ -1,14 +1,19 @@
 var md = require('markdown-it')()
 
 const md2json = mdString => {
-    if(!mdString) throw new Error('Markdown string expected')
-    const parsed = md.parse(mdString)
+    if (!mdString) throw new Error('Markdown string expected')
+    let parsed
+    try {
+        parsed = md.parse(mdString)
+    } catch (err) {
+        throw new Error('NO_DOCS_AVAILABLE')
+    }
     const exp = /(.*?)<!--lana:(\s?)+(\w+.*?)-->/i
     const result = parsed
-        .filter( token => token.content && token.content != '')
-        .map( ({content}) => content )
-        .filter( content => exp.test(content) )
-        .map( content => {
+        .filter(token => token.content && token.content != '')
+        .map(({ content }) => content)
+        .filter(content => exp.test(content))
+        .map(content => {
             const matches = content.match(exp)
             const value = matches[1].trim()
             const key = matches[3].trim()
@@ -17,8 +22,8 @@ const md2json = mdString => {
             result[key] = value
             return result
         }).reduce((acc, val) => Object.assign(acc, val), {})
-    
-        
+
+
     return result
 }
 

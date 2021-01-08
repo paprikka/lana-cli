@@ -3,7 +3,7 @@ describe('md2json', () => {
     it('should be a function', () => {
         expect(typeof md2json).toBe('function')
     })
-    
+
     it('should return an object for a string', () => {
         expect(typeof md2json('## hello')).toBe('object')
     })
@@ -11,6 +11,11 @@ describe('md2json', () => {
     it('should throw if no arguments passed', () => {
         const runner = () => md2json()
         expect(runner).toThrow()
+    })
+
+    it('should throw NO_DOCS_AVAILABLE if an invalid md file passed', () => {
+        const runner = () => md2json('[]')
+        expect(runner).toThrowError(new Error('NO_DOCS_AVAILABLE'))
     })
 
     it('should return matches for headers', () => {
@@ -23,7 +28,7 @@ Random paragraph of text goes here...
 
 
 #### Start the app <!--lana: start-->
-        
+
         `
 
         expect(md2json(inputString)).toEqual(

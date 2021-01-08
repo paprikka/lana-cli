@@ -71,7 +71,8 @@ const getInitialState = (root, pkg) => {
                         scripts: scripts2list(pkg.scripts || [], docs),
                         selectedInd: 0,
                         hasUpdate: !!update,
-                        update
+                        update,
+                        readmeMissingOrInvalid: !Object.keys(docs).length
                     }
                     return state
                 })
